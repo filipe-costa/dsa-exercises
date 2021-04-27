@@ -86,7 +86,7 @@ def ContainsEvenNumbers(A, n):
     if isEven(A[n]):
       return True
 
-    return TotalEvenRec(A, n - 1)
+    return ContainsEvenNumbers(A, n - 1)
 
   return False
   
