@@ -7,9 +7,10 @@
 
 # Without DP / Dictionary
 def factorial(n):
-  if n < 2:
-    return 1
-  return n * factorial(n - 1)
+  if n >= 2:
+    return n * factorial(n - 1)
+
+  return 1
 
 assert factorial(5) == 120, "Factorial of 5 does not equal 120"
 assert factorial(10) == 3628800, "Factorial of 10 does not equal 3628800"
@@ -20,18 +21,43 @@ def factorial(n):
   if n in dict:
     return dict[n]
 
-  if n < 2:
-    return 1
-  
-  val = n * factorial(n - 1)
+  if n >= 2:
+    val = n * factorial(n - 1)
 
-  if val not in dict:
-    dict[n] = val
+    if val not in dict:
+      dict[n] = val
 
-  return val
+    return val
+
+  return 1  
+
 
 assert factorial(5) == 120, "Factorial of 5 does not equal 120"
 assert factorial(10) == 3628800, "Factorial of 10 does not equal 3628800"
+
+# Fibonnaci sequence sum using DP
+dict = {}
+def fib(n):
+  if n == 0:
+    return 0
+
+  if n == 1:
+    return 1
+
+  if n > 1:
+    val = fib(n - 1) + fib(n - 2)
+
+    if n in dict:
+      return dict[n]
+
+    dict[n] = val
+  
+    return val
+
+assert fib(2) == 1, "fib(2) should be 1"
+assert fib(3) == 2, "fib(3) should be 2"
+assert fib(4) == 3, "fib(4) should be 3"
+assert fib(5) == 5, "fib(5) should be 5"
 
 # Exercise 2
 
@@ -130,7 +156,7 @@ def LargestEvenElement(A, n, largest):
   return largest
 
 A = [2, 3, 4, 9, 12, 14]
-assert LargestEvenElement(A, len(A) - 1, A[0]), "Largest even element is not 14"
+assert LargestEvenElement(A, len(A) - 1, A[0]) == 14, "Largest even element is not 14"
 
 A = [1, 3, 5, 7, 9, 11]
 assert LargestEvenElement(A, len(A) - 1, A[0]) == -1, "Contains even elements"
