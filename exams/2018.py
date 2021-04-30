@@ -43,7 +43,7 @@ print(findSmallestGreaterThanXRec(A, 1, len(A) - 1))
 # The dot product of two arrays of length n is the sum of the products of the
 # corresponding elements. That is, the dot product of arrays A[0], ..., A[n - 1]
 # and B[0], ..., B[n - 1] is A[0]  B[0] + ... + A[n - 1]  B[n - 1]. For example,
-# the dot product of [5; 1; 8] and [1; 2; 3]= 5 * 1 + 1  2 + 8 + 3 = 5 + 2 + 24 = 31.
+# the dot product of [5, 1, 8] and [1, 2, 3]= 5 * 1 + 1  2 + 8 + 3 = 5 + 2 + 24 = 31.
 # Write a program whose input is two arrays A and B of the same length that
 # computes their dot product.
 
