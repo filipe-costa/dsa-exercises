@@ -77,7 +77,7 @@ def FindMiddle(A):
   last = size - 1
 
   # Avoid overflow if the search space is large
-  mid = first + last // 2
+  mid = (first + (last - first)) // 2
 
   while mid != first and mid != last:
   
@@ -222,6 +222,7 @@ def Connect(B): # BFS
     visited[v] = 1
 
     for i in range(0, len(B)):
+      print(B[v][i], i)
       if B[v][i] != 0 and not visited[i]:
         q.append(i)
 
@@ -258,6 +259,11 @@ def ConnectedSubGraph(A, S):
 
 # Valid set:
 # [3, 4, 5]
+# [2, 4, 5]
+
+# Invalid sets:
+# [1, 2, 5]
+# [0, 1, 4]
 
 A = [
   [0, 1, 1, 0, 0, 0],
@@ -268,6 +274,6 @@ A = [
   [0, 0, 0, 1, 1, 0]
 ]
 
-S = [3, 4, 5]
+S = [2, 4, 5]
 
 ConnectedSubGraph(A, S)
