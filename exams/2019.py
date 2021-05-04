@@ -226,7 +226,7 @@ print(EvenMergeSort(A), [5, 2, 2, 4, 1, 4, 3, 8])
 def PrintEdges(A, B, C):
   for i in range(0, len(B)):
     for j in range(0, len(C)):
-      if A[B[i]][C[j]] or A[C[j]][B[i]]:
+      if A[B[i]][C[j]]:
         print(f'Edge: {B[i]}--{C[j]}')
 
 #    -- 1 -- 3 --
