@@ -263,6 +263,8 @@ def IsHamiltonianCycle(G, L):
         nextVert = L[i + 1]
         prevVert = L[i - 1]
 
+    # If no two vertices are adjacent in the graph
+    # Then it is definitely not a Hamiltonian cycle
     if (G[currVert][nextVert] == 0 or G[currVert][prevVert] == 0):
       return False
 
