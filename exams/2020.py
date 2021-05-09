@@ -222,7 +222,6 @@ def Connect(B): # BFS
     visited[v] = 1
 
     for i in range(0, len(B)):
-      print(B[v][i], i)
       if B[v][i] != 0 and not visited[i]:
         q.append(i)
 
