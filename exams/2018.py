@@ -120,3 +120,128 @@ B = [
 ]
 
 print(DotProductOfMatrices(A, B))
+
+# Exercise 5
+
+# The independence number of a graph G is the largest number of vertices no two of which are connected by an edge.  
+# Determine the independence numbers of the two graphs G1 and G2 shown below.
+
+#    G1
+#     0
+#     |\
+#     |  \
+# 1   |   5
+# | \ |  /|
+# |  \| / |
+# |   6   | 
+# | / | \ |
+# 2   |   4
+#  \  |  /
+#   \ | /
+#     3
+
+G1 = [
+  [0, 0, 0, 0, 0, 1, 1],
+  [0, 0, 1, 0, 0, 0, 1],
+  [0, 1, 0, 1, 0, 0, 1],
+  [0, 0, 1, 0, 1, 0, 1],
+  [0, 0, 0, 1, 0, 1, 1],
+  [1, 0, 0, 0, 1, 0, 1],
+  [1, 1, 1, 1, 1, 1, 0]
+]
+
+# Valid sets
+# [0, 1, 3]
+# [1, 3, 5]
+# [0, 4, 1]
+
+#    G2
+#     0
+#       \
+#        \
+# 1       5
+# |       |
+# |       |
+# 2       4
+#  \      /
+#   \    /
+#     3
+
+# Valid sets:
+# [0, 1, 3]
+# [1, 3, 5]
+# [0, 4, 1]
+
+G2 = [
+  [0, 0, 0, 0, 0, 1],
+  [0, 0, 1, 0, 0, 0],
+  [0, 1, 0, 1, 0, 0],
+  [0, 0, 1, 0, 1, 0],
+  [0, 0, 0, 1, 0, 1],
+  [1, 0, 0, 0, 1, 0]
+]
+
+def isClique(G, S, j):
+  if len(S) < 1:
+    return False
+  
+  for i in range(0, len(S)):
+    vertex = S[i]
+    if G[vertex][j] == 1:
+      return True
+  return False
+
+def IndependenceNumberOfGraphClique(G):
+
+  # Assuming starting at 0
+  S = [0]
+
+  visited = [0] * len(G)
+  visited[0] = 1
+
+  for i in range(0, len(G)):
+    for j in range(i + 1, len(G[i])):
+      if not isClique(G, S, j) and visited[j] == 0:
+        S.append(j)
+        visited[j] = 1
+
+  return len(S)
+
+
+assert IndependenceNumberOfGraphClique(G1) == 3, "Should be 3"
+assert IndependenceNumberOfGraphClique(G2) == 3, "Should be 3"
+
+# What is the independence number of a graph of n vertices every two vertices of which are connected by an edge?
+# In other words, the number of all edges in the graph
+
+def IndependenceNumberOfGraph(G):
+  n = 0
+
+  for i in range(0, len(G)):
+    for j in range(i + 1, len(G[i])):
+      if G[i][j] == 1:
+        n += 1
+
+  return n
+
+assert IndependenceNumberOfGraph(G1) == 11, "Should be 11"
+assert IndependenceNumberOfGraph(G2) == 5, "Should be 5"
+
+# What is the independence number of a graph with at least three vertices and only one edge?
+
+# Given the following graph
+#    1
+# 0  |
+#    2
+# One can conclude that the maximum independence number of a graph is 2
+# The reason being that 0 is not connected to either 1 or 2
+# Therefore our set would look like [0, 1] or [0, 2], since 1 and 2 are adjacent
+# We don't add one or the other depending on how we have composed our set.
+
+G3 = [
+  [0, 0, 0],
+  [0, 0, 1],
+  [0, 1, 0]
+]
+
+assert IndependenceNumberOfGraphClique(G3) == 2, "Should be 2"
